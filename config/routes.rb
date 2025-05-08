@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get "card_draw/index"
   post "card_draw/draw", to:"card_draw#draw"
   get 'quest_cards/download',to: 'quest_cards#download'#csvダウンロード
+  resources :quest_cards
+
 end
