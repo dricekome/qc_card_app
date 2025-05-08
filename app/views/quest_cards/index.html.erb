@@ -1,0 +1,29 @@
+<h1>クエストカード一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>名前</th>
+      <th>色</th>
+      <th>使用済み</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quest_cards.each do |card| %>
+      <tr>
+        <td><%= card.id %></td>
+        <td><%= card.name %></td>
+        <td><%= card.color %></td>
+        <td><%= card.used ? "済" : "未" %></td>
+        <td>
+          <%= link_to '編集', edit_quest_card_path(card) %> |
+          <%= link_to '削除', quest_card_path(card), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '新しいカードを作成', new_quest_card_path %>
