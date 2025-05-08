@@ -1,0 +1,2 @@
+class QuestCard < ApplicationRecord
+end

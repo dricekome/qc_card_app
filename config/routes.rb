@@ -9,11 +9,7 @@ Rails.application.routes.draw do
   #root 'pages#index'
   root 'card_draw#index'
   post 'quest_cards', to:'quest_cards#create'#csvのアップロード処理
+  get "card_draw/index"
+  post "card_draw/draw", to:"card_draw#draw"
   get 'quest_cards/download',to: 'quest_cards#download'#csvダウンロード
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
