@@ -1,0 +1,2 @@
+class QuestCardsController < ApplicationController
+end

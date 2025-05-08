@@ -1,0 +1,9 @@
+<h1>クエストカード抽選</h1>
+
+<!-- アップロードフォーム -->
+<%= form_with url: quest_cards_path, method: :post, local: true, html: { multipart: true } do |f| %>
+  <%= f.file_field :csv_file %>
+  <%= f.submit "カードリスト作成" %>
+<% end %>
+
+<!-- JavaScriptのStimulusやボタンなどもここで呼び出し -->

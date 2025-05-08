@@ -1,0 +1,71 @@
+<h2>カード抽選（4チーム）</h2>
+
+<div data-controller="card-draw">
+  <% 4.times do |i| %>
+    <div style="border: 1px solid #ccc; padding: 1em; margin-bottom: 1em;">
+      <h3>チーム<%= i + 1 %></h3>
+      <div>
+        チーム
+        <select
+          data-card-draw-target="team"
+          data-action="change->card-draw#updateTeamOptions"
+        >
+          <option value="" selected>---</option>
+          <option value="Sun Rice">Sun Rice</option>
+          <option value="Pentac JOKER">Pentac JOKER</option>
+          <option value="Empress">Empress</option>
+          <option value="Samurai Ogre">Samurai Ogre</option>
+          <option value="Ali di luce">Ali di luce</option>
+          <option value="とむとジェリー">とむとジェリー</option>
+          <option value="Sky Road">Sky Road</option>
+          <option value="Legame">Legame</option>
+          <option value="SRM">SRM</option>
+          <option value="黒崎動物園">黒崎動物園</option>
+          <option value="しばき隊">しばき隊</option>
+          <option value="ゆーごすらびあん">ゆーごすらびあん</option>
+        </select>
+      </div>
+
+      <div>
+        通常カード
+        <select
+          data-card-draw-target="normal"
+          data-action="change->card-draw#updateOptions"
+        >
+          <option value="10" selected>---</option>
+          <option value="11">ブルーカード(5点獲得)</option>
+          <option value="12">グリーンカード(10点獲得)</option>
+          <option value="13">イエローカード(20点獲得)</option>
+          <option value="14">レッドカード(30点獲得)</option>
+        </select>
+
+        スペシャルカード
+        <select
+          data-card-draw-target="special"
+          data-action="change->card-draw#updateOptions"
+        >
+          <option value="20" selected>---</option>
+          <option value="21">ゴールドカード(1pt消費)</option>
+          <option value="22">プラチナカード(3pt消費)</option>
+          <option value="23">ブラックカード(5pt消費)</option>
+        </select>
+      </div>
+    </div>
+  <% end %>
+
+  <button data-action="click->card-draw#draw">カードを引く</button>
+
+  <!-- ポップアップモーダル -->
+  <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000;">
+    <div style="background:#fff; padding:2em; width:80%; max-width:600px; margin:5% auto; position:relative; border-radius:10px;">
+      <h3>抽選結果</h3>
+      <ul>
+        <li><span data-card-draw-target="result" id="result0"></span></li>
+        <li><span data-card-draw-target="result" id="result1"></span></li>
+        <li><span data-card-draw-target="result" id="result2"></span></li>
+        <li><span data-card-draw-target="result" id="result3"></span></li>
+      </ul>
+      <button onclick="document.getElementById('modal').style.display='none';">閉じる</button>
+    </div>
+  </div>
+</div>
