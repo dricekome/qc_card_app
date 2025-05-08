@@ -1,0 +1,14 @@
+<h2>抽選結果</h2>
+
+<ol>
+  <% @results.each_with_index do |res, i| %>
+    <li>
+      <strong>チーム<%= i + 1 %>：<%= res[:team] %></strong><br>
+      <% res[:cards].each do |card_info| %>
+        <div><%= card_info %></div>
+      <% end %>
+    </li>
+  <% end %>
+</ol>
+
+<%= link_to "戻る", card_draw_index_path, class: "btn btn-secondary" %>
