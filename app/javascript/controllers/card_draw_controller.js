@@ -48,11 +48,19 @@ export default class extends Controller {
 
   updateTeamOptions() {
     const selectedValues = this.teamTargets.map(select => select.value);
-
+  
     this.teamTargets.forEach((select, i) => {
       const currentValue = select.value;
+  
       Array.from(select.options).forEach(option => {
-        option.disabled = (option.value !== currentValue && selectedValues.includes(option.value));
+        // ---（未選択）は無効化しない
+        if (option.value === "" || option.value === "100") {
+          option.disabled = false;
+        } else if (option.value !== currentValue && selectedValues.includes(option.value)) {
+          option.disabled = true;
+        } else {
+          option.disabled = false;
+        }
       });
     });
   }
