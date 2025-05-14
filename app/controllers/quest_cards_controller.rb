@@ -8,18 +8,18 @@ class QuestCardsController < ApplicationController
   end
 
   def create
-  names = params[:names]&.split(/\r?\n/)&.map(&:strip).reject(&:empty?)
-  color = params[:color]
+    names = params[:names]&.split(/\r?\n/)&.map(&:strip).reject(&:empty?)
+    color = params[:color]
 
-  if names.present?
-    names.each do |name|
-      QuestCard.create(name: name, color: color, used: false)
+    if names.present?
+      names.each do |name|
+        QuestCard.create(name: name, color: color, used: false)
+      end
+      redirect_to quest_cards_path, notice: "#{names.size} 枚のカードを登録しました"
+    else
+      redirect_to new_quest_card_path, alert: "カード名を入力してください"
     end
-    redirect_to quest_cards_path, notice: "#{names.size} 枚のカードを登録しました"
-  else
-    redirect_to new_quest_card_path, alert: "カード名を入力してください"
   end
-end
 
   def edit
     @quest_card = QuestCard.find(params[:id])
@@ -28,7 +28,7 @@ end
   def update
     @quest_card = QuestCard.find(params[:id])
     if @quest_card.update(quest_card_params)
-      redirect_to quest_cards_path, notice: 'カードを更新しました'
+      redirect_to quest_cards_path, notice: "カードを更新しました"
     else
       render :edit
     end
@@ -37,14 +37,11 @@ end
   def destroy
     @quest_card = QuestCard.find(params[:id])
     @quest_card.destroy
-    redirect_to quest_cards_path, notice: 'カードを削除しました'
+    redirect_to quest_cards_path, notice: "カードを削除しました"
   end
 
-
-
-
   def edit_multiple
-  @quest_cards = QuestCard.all.order(:id)
+    @quest_cards = QuestCard.all.order(:id)
   end
 
   def update_multiple
@@ -63,6 +60,4 @@ end
   def quest_card_params
     params.require(:quest_card).permit(:name, :color, :used)
   end
-
-  
 end
