@@ -1,4 +1,6 @@
 <h1>クエストカード一覧</h1>
+<%= link_to 'クエストカード抽選機能へ', 'card_draw/index' %>
+<%= link_to '使用状況一括編集', edit_multiple_quest_cards_path %>
 
 <table>
   <thead>
@@ -19,7 +21,7 @@
         <td><%= card.used ? "済" : "未" %></td>
         <td>
           <%= link_to '編集', edit_quest_card_path(card) %> |
-          <%= link_to '削除', quest_card_path(card), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+          <%= button_to '削除', quest_card_path(card), method: :delete, data: { confirm: '本当に削除しますか？' }, form: { style: "display:inline;" } %>
         </td>
       </tr>
     <% end %>

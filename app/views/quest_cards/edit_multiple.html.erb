@@ -1,0 +1,30 @@
+<!-- app/views/quest_cards/edit_multiple.html.erb -->
+<h2>クエストカード使用状況 編集</h2>
+
+<%= form_with url: update_multiple_quest_cards_path, method: :patch do %>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>色</th>
+        <th>使用済み？</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @quest_cards.each do |card| %>
+        <tr>
+          <td><%= card.id %></td>
+          <td><%= card.name %></td>
+          <td><%= card.color %></td>
+          <td>
+            <%= hidden_field_tag "quest_cards[#{card.id}][used]", "0" %>
+            <%= check_box_tag "quest_cards[#{card.id}][used]", "1", card.used %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= submit_tag "使用状態を一括更新", class: "btn btn-primary" %>
+<% end %>
