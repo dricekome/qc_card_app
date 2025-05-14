@@ -1,34 +1,38 @@
 <h2>クエストカード抽選（4チーム分）</h2>
+<%= link_to 'クエストカード編集画面へ', quest_cards_path %>
 
 <%= form_with url: card_draw_draw_path, method: :post, data: { turbo: false } do %>
-  <% 4.times do |i| %>
-    <fieldset style="margin-bottom: 2em; padding: 1em; border: 1px solid #ccc;">
-      <legend>チーム<%= i + 1 %></legend>
+    <% 4.times do |i| %>
+      <fieldset style="margin-bottom: 2em; padding: 1em; border: 1px solid #ccc;">
+        <legend>チーム<%= i + 1 %></legend>
 
-      <div>
-        <label>チーム名：</label>
-        <%= select_tag "team#{i+1}", options_for_select([
-          "---", "compagno", "呑雲吐龍", "緑龍", "Wing Blaves",
-          "Pursuing Fun!", "でるぽんみるちーず", "BITE into FATE", "Beiowolf",
-          "SkyRoad", "RED ZONE!", "ローリエ", "Ne_oLion"
-        ]) %>
-      </div>
+        <div>
+          <label>チーム名：</label>
+          <%= select_tag "team#{i+1}",
+          options_for_select([
+            ["---", "100"], ["compagno", "101"], ["呑雲吐龍", "102"], ["緑龍", "103"],
+            ["Wing Blaves", "104"], ["Pursuing Fun!", "105"], ["でるぽんみるちーず", "106"],
+            ["BITE into FATE", "107"], ["Beiowolf", "108"], ["SkyRoad", "109"],
+            ["RED ZONE!", "110"], ["ローリエ", "111"], ["Ne_oLion", "112"]
+          ]),
+          class: "team-select"%>
+        </div>
 
-      <div>
-        <label>通常カード：</label>
-        <%= select_tag "normal#{i+1}", options_for_select([
-          "---", "ブルー", "グリーン", "イエロー", "レッド"
-        ]) %>
-      </div>
+        <div>
+          <label>通常カード：</label>
+          <%= select_tag "normal#{i+1}", options_for_select([
+            "---", "ブルー", "グリーン", "イエロー", "レッド"
+          ]) %>
+        </div>
 
-      <div>
-        <label>スペシャルカード：</label>
-        <%= select_tag "special#{i+1}", options_for_select([
-          "---", "ゴールド", "プラチナ", "ブラック"
-        ]) %>
-      </div>
-    </fieldset>
-  <% end %>
+        <div>
+          <label>スペシャルカード：</label>
+          <%= select_tag "special#{i+1}", options_for_select([
+            "---", "ゴールド", "プラチナ", "ブラック"
+          ]) %>
+        </div>
+      </fieldset>
+    <% end %>
 
-  <%= submit_tag "抽選する", class: "btn btn-primary" %>
+    <%= submit_tag "抽選する", class: "btn btn-primary" %>
 <% end %>
