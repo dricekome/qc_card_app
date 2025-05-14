@@ -1,7 +1,19 @@
 <h1>クエストカード一覧</h1>
 <%= link_to 'クエストカード抽選機能へ', 'card_draw/index' %>
 <%= link_to '使用状況一括編集', edit_multiple_quest_cards_path %>
-
+<p>
+  使用済みカード枚数：<%= QuestCard.where(used: true).count %> 枚 /
+  全カード枚数：<%= QuestCard.count %> 枚
+</p>
+<ul>
+  <% ["blue", "green", "yellow", "red", "gold", "platinum", "black"].each do |color| %>
+    <li>
+      <%= color.capitalize %>：
+      <%= QuestCard.where(color: color, used: true).count %> /
+      <%= QuestCard.where(color: color).count %> 枚
+    </li>
+  <% end %>
+</ul>
 <table>
   <thead>
     <tr>
@@ -27,5 +39,4 @@
     <% end %>
   </tbody>
 </table>
-
 <%= link_to '新しいカードを作成', new_quest_card_path %>

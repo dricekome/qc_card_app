@@ -1,17 +1,13 @@
 <h2>クエストカード一括登録</h2>
-
 <%= form_with url: quest_cards_path, method: :post do %>
   <div>
     <label>色を選択：</label>
     <%= select_tag :color, options_for_select(["blue", "green", "yellow", "red", "gold", "platinum", "black"]) %>
   </div>
-
   <div>
     <label>カード名（1行に1つ）：</label><br>
     <%= text_area_tag :names, "", rows: 10, cols: 50 %>
   </div>
-
   <%= submit_tag "登録する", class: "btn btn-primary" %>
 <% end %>
-
 <%= link_to '一覧に戻る', quest_cards_path %>

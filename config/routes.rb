@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root 'card_draw#index'
+  root "card_draw#index"
 
   get "card_draw/index"
-  post "card_draw/draw", to:"card_draw#draw"
-  get 'quest_cards/download', to: 'quest_cards#download'
+  post "card_draw/draw", to: "card_draw#draw"
+  get "quest_cards/download", to: "quest_cards#download"
 
   resources :quest_cards do
     collection do
